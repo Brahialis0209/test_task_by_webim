@@ -67,12 +67,14 @@ def get_need_dates(username, password):
         urllib2.HTTPRedirectHandler())
     html, url = auth_user(email=username, password=password, app_id=app_id, scope=['friends', 'account'],
                           opener=opener)
+    print(url)
     if urlparse(url).path != "/blank.html":
         url = give_access(html, opener)
 
     def split_key_value(kv_pair):
         kv = kv_pair.split("=")
         return kv[0], kv[1]
+    print(url)
     print('ddssssd^     ', urlparse(url).fragment.split("&"))
     token = urlparse(url).fragment.split("&")[0].split("=")[1]
     id = urlparse(url).fragment.split("&")[2].split("=")[1]
