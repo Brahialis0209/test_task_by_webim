@@ -20,5 +20,6 @@ from django.urls import path, include, re_path
 urlpatterns = [
     path('catalog/', include('catalog.urls')),
     path('', include('catalog.urls')),
+    path('submit/', include('catalog.urls')),
 ]
 
