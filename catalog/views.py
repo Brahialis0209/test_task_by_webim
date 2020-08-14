@@ -36,9 +36,11 @@ def auth_user(email, password, app_id, scope, opener):
         raise RuntimeError("You already auth.")
     parser.params["email"] = email
     parser.params["pass"] = password
+    print('pars url : ',  parser.url)
     if parser.method == "post":
         response = opener.open(parser.url, urlencode(parser.params).encode("utf-8"))  # INPUT
         print('eeeeeboy')
+        print(response.geturl())
     else:
         raise NotImplementedError("Method '%s'" % parser.params.method % " for user authorization form \
                     submission is currently not supported. Please implement it if there is a need.")
