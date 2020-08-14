@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} yyy {% endblock %}
+
+{% block content %}
+
+
+<style>
+    button{
+        position: absolute;
+        width: 200px;
+        height: 20px;
+        top: 100px;
+        left: 200px;
+    }
+</style>
+
+<form action="{% url 'submit' %}" method="GET">
+
+    {% csrf_token %}
+    <button type="submit"> Авторизоваться </button>
+
+</form>
+{% endblock %}
