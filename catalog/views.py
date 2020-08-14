@@ -1,11 +1,7 @@
 import json
-import sys
 from urllib.parse import urlencode
-
 from django.shortcuts import render
 from django.http import HttpResponse
-
-sys.path.append(sys.path[0] + '/..')
 from form_parser import FormParser
 import http.cookiejar as cookielib
 import urllib.request as urllib2
