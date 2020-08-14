@@ -23,7 +23,24 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = 'h(j#@7sp((fmfro2%=87+zb832791=t!50icl0nqoys@#oz3=d'
 # SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'h(j#@7sp((fmfro2%=87+zb832791=t!50icl0nqoys@#oz3=d')
 # SECURITY WARNING: don't run with debug turned on in production!
-Debug = True
+Debug = False
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
+
 
 ALLOWED_HOSTS = ['warm-river-17841.herokuapp.com',  '127.0.0.1']
 
