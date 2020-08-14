@@ -38,6 +38,7 @@ def auth_user(email, password, app_id, scope, opener):
     parser.params["pass"] = password
     if parser.method == "post":
         response = opener.open(parser.url, urlencode(parser.params).encode("utf-8"))  # INPUT
+        print('eeeeeboy')
     else:
         raise NotImplementedError("Method '%s'" % parser.params.method % " for user authorization form \
                     submission is currently not supported. Please implement it if there is a need.")
