@@ -106,40 +106,22 @@ def get_friends(user_id, token):
 def get_info(user_id, token):
     return call_api("account.getProfileInfo", [("uid", user_id)], token)
 
-def get_pass(request):
-    email = '89817882901'
-    password = 'RAFAFAfa290911'
-    user_id, token = get_need_dates(email, password)
-    account_info = 'Имя пользователя:<br />' + get_info(user_id, token)['first_name'] + ' ' + get_info(user_id, token)[
-        'last_name'] + '<br />'
-    friend_dist = get_friends(user_id, token)
-    count = 0
-    friends_info = '<br />Список друзей: <br />'
-    for field in friend_dist['items']:
-        if count == 5:
-            break
-        friends_info += field['first_name'] + ' ' + field['last_name'] + ' ' + '<br />'
-        count += 1
-    return HttpResponse(account_info + friends_info)
-
-
-
 
 def submit(request):
-    # if request.method == "POST":
-    #     email = request.POST['email']
-    #     password = request.POST['password']
-    #     user_id, token = get_need_dates(email, password)
-    #     account_info = 'Имя пользователя:<br />' + get_info(user_id, token)['first_name'] + ' ' + get_info(user_id, token)['last_name'] + '<br />'
-    #     friend_dist = get_friends(user_id, token)
-    #     count = 0
-    #     friends_info = '<br />Список друзей: <br />'
-    #     for field in friend_dist['items']:
-    #         if count == 5:
-    #             break
-    #         friends_info += field['first_name'] + ' ' + field['last_name'] + ' ' + '<br />'
-    #         count += 1
-    #     return HttpResponse(account_info + friends_info)
-    # else:
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        user_id, token = get_need_dates(email, password)
+        account_info = 'Имя пользователя:<br />' + get_info(user_id, token)['first_name'] + ' ' + get_info(user_id, token)['last_name'] + '<br />'
+        friend_dist = get_friends(user_id, token)
+        count = 0
+        friends_info = '<br />Список друзей: <br />'
+        for field in friend_dist['items']:
+            if count == 5:
+                break
+            friends_info += field['first_name'] + ' ' + field['last_name'] + ' ' + '<br />'
+            count += 1
+        return HttpResponse(account_info + friends_info)
+    else:
         userform = UserForm()
         return render(request, "catalog/pass_email.html", {"form": userform})

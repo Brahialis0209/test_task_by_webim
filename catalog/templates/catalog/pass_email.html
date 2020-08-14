@@ -5,7 +5,7 @@
     <title>Django Forms</title>
 </head>
 <body>
-    <form action="{% url 'get_pass' %}" method="POST">
+    <form method="POST">
         {% csrf_token %}
     <table>
         {{ form }}
