@@ -13,10 +13,6 @@ class FormParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
         tag = tag.lower()
         if tag == "form":
-            if self.form_parsed:
-                raise RuntimeError("Second form on page.")
-            if self.in_form:
-                raise RuntimeError("Already in form.")
             self.in_form = True
 
         if not self.in_form:
@@ -34,7 +30,5 @@ class FormParser(HTMLParser):
     def handle_endtag(self, tag):
         tag = tag.lower()
         if tag == "form":
-            if not self.in_form:
-                raise RuntimeError("Unexpected end of <form>.")
             self.in_form = False
             self.form_parsed = True

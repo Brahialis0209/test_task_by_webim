@@ -25,27 +25,12 @@ def auth_user(email, password, app_id, scope, opener):
         "client_id=%s&scope=%s&display=wap" % (app_id, ",".join(scope))
     )
     html = response.read()
-    print(1,' ', response.geturl())
-    # Find and parse user authorization form
     parser = FormParser()
     parser.feed(str(html))
     parser.close()
-    if not parser.form_parsed or parser.url is None:
-        raise RuntimeError("Something wrong with a parser. Unable parse VK authorization form.")
-    elif "pass" not in parser.params or \
-            "email" not in parser.params:
-        raise RuntimeError("You already auth.")
     parser.params["email"] = email
     parser.params["pass"] = password
-    print('pars url : ',  parser.url)
-    if parser.method == "post":
-        print(parser.params)
-        response = opener.open(parser.url, urlencode(parser.params).encode("utf-8"))  # INPUT
-        print('eeeeeboy')
-        print(response.geturl())
-    else:
-        raise NotImplementedError("Method '%s'" % parser.params.method % " for user authorization form \
-                    submission is currently not supported. Please implement it if there is a need.")
+    response = opener.open(parser.url, urlencode(parser.params).encode("utf-8"))  # INPUT
     return response.read(), response.geturl()
 
 
@@ -53,15 +38,7 @@ def give_access(html, opener):
     parser = FormParser()
     parser.feed(str(html))
     parser.close()
-
-    if not parser.form_parsed or parser.url is None:
-        raise RuntimeError("Something wrong with a parser. Unable parse VK application authorization form.")
-
-    if parser.method == "post":
-        response = opener.open(parser.url, urlencode(parser.params).encode("utf-8"))
-    else:
-        raise NotImplementedError("Form method '%s'" % parser.params.method + "for application authorization \
-                form submission is currently not supported. Please implement it if there is a need.")
+    response = opener.open(parser.url, urlencode(parser.params).encode("utf-8"))
     return response.geturl()
 
 
@@ -72,18 +49,10 @@ def get_need_dates(username, password):
         urllib2.HTTPRedirectHandler())
     html, url = auth_user(email=username, password=password, app_id=app_id, scope=['friends', 'account'],
                           opener=opener)
-    print(url)
     if urlparse(url).path != "/blank.html":
         url = give_access(html, opener)
-
-    def split_key_value(kv_pair):
-        kv = kv_pair.split("=")
-        return kv[0], kv[1]
-    print('ddssssd^     ', urlparse(url).fragment.split("&"))
     token = urlparse(url).fragment.split("&")[0].split("=")[1]
     id = urlparse(url).fragment.split("&")[2].split("=")[1]
-    print(token, id)
-    # answer = dict(split_key_value(kv_pair) for kv_pair in urlparse(url).fragment.split("&"))
     return id, token
 
 
