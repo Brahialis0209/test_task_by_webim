@@ -25,6 +25,7 @@ def auth_user(email, password, app_id, scope, opener):
         "client_id=%s&scope=%s&display=wap" % (app_id, ",".join(scope))
     )
     html = response.read()
+    print(1,' ', response.geturl())
     # Find and parse user authorization form
     parser = FormParser()
     parser.feed(str(html))
