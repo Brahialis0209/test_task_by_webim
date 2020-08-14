@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'h(j#@7sp((fmfro2%=87+zb832791=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['test_task_for_webim.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['warm-river-17841.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
