@@ -25,7 +25,7 @@ SECRET_KEY = 'h(j#@7sp((fmfro2%=87+zb832791=t!50icl0nqoys@#oz3=d'
 # SECURITY WARNING: don't run with debug turned on in production!
 Debug = False
 
-ALLOWED_HOSTS = ['warm-river-17841.herokuapp.com', 'warm-river-17841.herokuapp.com/submit/',  '127.0.0.1']
+ALLOWED_HOSTS = ['warm-river-17841.herokuapp.com',  '127.0.0.1']
 
 
 # Application definition
@@ -122,6 +122,10 @@ USE_TZ = True
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
