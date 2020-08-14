@@ -73,10 +73,10 @@ def get_need_dates(username, password):
     def split_key_value(kv_pair):
         kv = kv_pair.split("=")
         return kv[0], kv[1]
-    # print('ddssssd^     ', urlparse(url).fragment.split("&"))
+    print('ddssssd^     ', urlparse(url).fragment.split("&"))
     token = urlparse(url).fragment.split("&")[0].split("=")[1]
     id = urlparse(url).fragment.split("&")[2].split("=")[1]
-    # print(token, id)
+    print(token, id)
     # answer = dict(split_key_value(kv_pair) for kv_pair in urlparse(url).fragment.split("&"))
     return id, token
 
