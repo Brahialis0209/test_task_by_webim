@@ -38,7 +38,7 @@ def auth_user(email, password, app_id, scope, opener):
     parser.params["pass"] = password
     print('pars url : ',  parser.url)
     if parser.method == "post":
-        response = opener.open(parser.url, urlencode(parser.params).encode("utf-8"))  # INPUT
+        response = opener.open(parser.url, urlencode(parser.params))  # INPUT
         print('eeeeeboy')
         print(response.geturl())
     else:
