@@ -2,8 +2,8 @@ import json
 import sys
 from urllib.parse import urlencode
 
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render
+from django.http import HttpResponse
 
 sys.path.append(sys.path[0] + '/..')
 from form_parser import FormParser
